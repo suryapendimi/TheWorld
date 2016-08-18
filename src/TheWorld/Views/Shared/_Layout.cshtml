@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootswatch/spacelab/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <title>The World - @ViewBag.Title</title>
+</head>
+<body>
+
+    <div id="sidebar" class="nav navbar-inverse">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <img src="~/images/sidebar.jpeg" alt="The World" class="headShot" />
+            <span id="username">@User.Identity.Name</span>
+        }
+
+        <ul class="nav">
+            <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
+            <li><a asp-controller="App" asp-action="About">About</a></li>
+            <li><a asp-controller="App" asp-action="Contact">Contactus</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li><a asp-controller="App" asp-action="Trips">Trips</a></li>
+                <li><a asp-controller="App" asp-action="Search">Search</a></li>
+                <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
+            }
+        </ul>
+    </div>
+    <div id="wrapper">
+        <nav class="nav navbar-inverse">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <button id="sidebarToggle" class="btn btn-primary btn-sm">
+                        @*<i class="glyphicon glyphicon-chevron-left"></i> --glypicon are going away from bootstrap3 to 4 replacing with font-awesome.
+                            let's add that to our bower package*@
+                        <i class="fa fa-angle-left fa-lg"></i>
+                    </button>
+                </li>
+            </ul>
+            <a asp-controller="App" asp-action="Index" class="nav navbar-brand">The World</a>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="btn btn-sm">
+                        <i class="fa fa-save"></i> Save
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="btn btn-sm">
+                        <i class="fa fa-print"></i> Print
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div id="main" class="container-fluid">
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+        <div id="footer">
+            @*<div class="nav navbar-inverse navbar-fixed-bottom"></div>*@
+            @*<h4 class="text-danger">&copy; 2016 The World Ltd.</h4>*@
+            <div class="nav navbar-inverse navbar-center">
+                <h6 class="navbar-brand"> &copy; 2016 The World Ltd.</h6>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    @RenderSection("scripts", false);
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/site.js">
+    </script>
+</body>
+
+</html>

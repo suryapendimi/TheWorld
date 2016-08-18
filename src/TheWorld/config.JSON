@@ -1,0 +1,11 @@
+{
+  "MailSetting": {
+    "ToAddress": "spendimi@yahoo.com"
+  },
+  "ConnectionStrings": {
+    "WorlddContextConnection": "Server=(LocalDB)\\MSSQLLocalDB;Database=TheWorldDB;Trusted_Connection=true;MultipleActiveResultSets=true;"
+  },
+  "Keys": {  //this is to configure a BingKey ... create a Env variable. Do not checkin apikey in to source repository.
+    "BingKey": "Are9G1s57KABgtk5P2zmJ1M5UdT8T3fKxHGj29ei0htqQUEEw4tAZb45zVguqq95"
+  }
+}
