@@ -1,0 +1,42 @@
+Using Postman 
+
+Get for Stops:
+http://localhost:51307/api/trips/MyIndiaTrip20016/stops
+if tripname contains space need to append %20 in the space
+
+Post:
+http://localhost:51307/api/trips/MyIndiaTrip20016/stops
+Params
+{    
+      "name": "Princeton, NJ",
+      
+	   "arrival":"2012-01-01",
+      
+           "userName":"spendimi"
+  
+}
+
+Submitting new Trip:
+http://localhost:51307/api/trips
+
+
+Post: with Empty Stops:
+Params
+{    
+      "name": "Princeton, NJ",
+
+            "userName":"spendimi"
+  }
+
+Post with Stops:
+{ "name": "MyAustraliaTrip20016",
+ "userName": "spendimi",
+ "stops": [
+{
+        "name": "Princeton, NJ",
+     
+        "latitude": 40.360309600830078,
+        "order": 1,
+        "arrival": "2012-01-01"
+	  }]
+}

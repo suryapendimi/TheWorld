@@ -28,11 +28,12 @@ namespace TheWorld.Models
         public void  AddTrip(Trip trip)
         {
             _context.Add(trip);
-        }        
+        }
+
 
         public async Task<bool> SaveChangesAsync()
         {
-           return (await _context.SaveChangesAsync())  >0;
+            return (await _context.SaveChangesAsync()) > 0;
         }
 
         public Trip GetTripByName(string tripName)
@@ -47,11 +48,33 @@ namespace TheWorld.Models
         public void AddStop(string tripName,string username, Stop newStop)
         {
             var trip = GetTripByName(tripName);
-            if(trip!=null)
+            if (trip != null)
             {
+                if (trip.Stops != null && trip.Stops.Count > 0)
+                { 
+                newStop.Order = trip.Stops.Max(s => s.Order) + 1;
+                }
                 trip.Stops.Add(newStop);//it's not enough for EF //Foreign key will be set
                 _context.Stops.Add(newStop);
             }
+        }
+
+        public IEnumerable<Trip> GetAllTripsWithStops()
+        {
+            try
+            {
+                return _context.Trips
+                .Include(t => t.Stops)
+                .OrderBy(t => t.Name)                
+                .ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not get trips with stops from database");
+                return null;
+
+            }
+
         }
 
         public IEnumerable<Trip> GetUserTripsWithStops(string name)
@@ -61,7 +84,7 @@ namespace TheWorld.Models
                 return _context.Trips
                 .Include(t => t.Stops)
                 .OrderBy(t => t.Name)
-                .Where(t => t.Name == name)
+                .Where(t => t.UserName == name)
                 .ToList();
             }
             catch(Exception ex)
@@ -77,6 +100,11 @@ namespace TheWorld.Models
             return _context.Trips.Include(t => t.Stops)
                  .Where(t => t.Name == tripName && t.UserName == username)
                  .FirstOrDefault();
+        }
+
+        public bool SaveAll()
+        {
+            return _context.SaveChanges() > 0;
         }
     }
 }
