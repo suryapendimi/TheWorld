@@ -1,0 +1,34 @@
+1.Add a Pacakage.json file (of type NPM configuration file)
+add the dependencies..
+2.Add a gulpfile.js (of type gulp config file)
+refer to the files..
+3. Open a cmd prompt
+	npm rm --global gulp 
+	$ npm init "project path"
+	$ npm install --save-dev gulp
+	E:\Projects\Web\TheWorld\src\TheWorld>gulp minify
+	u would see response as ...
+	[19:56:43] Starting 'minify'...
+[19:56:43] Finished 'minify' after 186 ms
+if you go back and see _app foler u see the minified versions of js files
+if u make a changes in js files.. need to execute gupl commands to update min files.
+u can open 'Task Runner explorer' by right click on gulp file and click refresh icon and under Tasks -->minify and "run"
+u would see response as 
+[20:10:05] Using gulpfile E:\Projects\Web\TheWorld\src\TheWorld\Gulpfile.js
+[20:10:06] Starting 'minify'...
+[20:10:06] Finished 'minify' after 182 ms
+Process terminated with code 0.
+
+4. After minified versions created need to point them based on Env. varible
+for Dev we can use non minified versions..
+for QA,PROD use min version.. we need to wrapp these in <environment> tag
+We may use "Task Runner Explorer" for minification.
+5. We need gulp-ng-annotate to correct the $http,$routeparams to help out in minification process.
+
+Add this below setting to project.json which tell what to be installed on different env. and in which order etc.,
+6.  "scripts": {
+    "prePublish": [ "npm install", "bower install" ],
+    "prepare": "gulp minify"    
+  }
+
+7. We can use VS2015 publish or can use DNX for command line deployment.

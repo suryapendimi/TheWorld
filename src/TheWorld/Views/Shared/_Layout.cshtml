@@ -23,8 +23,7 @@
             <li><a asp-controller="App" asp-action="Contact">Contactus</a></li>
             @if (User.Identity.IsAuthenticated)
             {
-                <li><a asp-controller="App" asp-action="Trips">Trips</a></li>
-                <li><a asp-controller="App" asp-action="Search">Search</a></li>
+                <li><a asp-controller="App" asp-action="Trips">Trips</a></li>                
                 <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
             }
         </ul>
@@ -67,11 +66,15 @@
             </div>
         </div>
     </div>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    @RenderSection("scripts", false);
+    <script src="~/lib/jquery/dist/jquery.js"></script>    
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="~/js/site.js">
-    </script>
+    <environment names="Development">
+        <script type="text/javascript" src="~/js/site.js"></script>
+    </environment>
+    <environment names="Production">
+        <script type="text/javascript" src="~/lib/_app/site.js"></script>
+    </environment>
+    @RenderSection("scripts", false);
 </body>
 
 </html>

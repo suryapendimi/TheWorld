@@ -94,6 +94,7 @@ namespace TheWorld
         public void Configure(IApplicationBuilder app,
             IHostingEnvironment env, WorldContextSeedData seeder,ILoggerFactory loggerFactory)
         {
+
             //This is to initialize
             Mapper.Initialize(config =>
             {
@@ -104,12 +105,13 @@ namespace TheWorld
             }); 
 
             //app.UseDefaultFiles();
-            if(env.IsEnvironment("Development"))
-            { 
-            //#if DEBUG
-            app.UseDeveloperExceptionPage();
+            if(env.IsDevelopment())
+            {
+                //#if DEBUG               
+                
                 //#endif
                 loggerFactory.AddDebug(LogLevel.Information);
+                app.UseDeveloperExceptionPage();
             }
             else
             {
