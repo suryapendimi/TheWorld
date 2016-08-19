@@ -37,17 +37,18 @@ namespace TheWorld.Controllers.Web
         [Authorize] //system will prompt users if they are not loggedin.
         public IActionResult Trips()
         {
-
-            try
-            {
-                var data = _worldRepository.GetAllTrips();
-                return View(data);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed in the Index of appController while getting Trips info : {ex.Message}");
-                return Redirect("/error");
-            }
+            //commented out after implementing client side script file for editor 
+            //try
+            //{
+            //    var data = _worldRepository.GetAllTrips();
+            //    return View(data);
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError($"Failed in the Index of appController while getting Trips info : {ex.Message}");
+            //    return Redirect("/error");
+            //}
+            return View();
         }
         public IActionResult Contact()
         {

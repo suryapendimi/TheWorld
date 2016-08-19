@@ -40,3 +40,9 @@ Post with Stops:
         "arrival": "2012-01-01"
 	  }]
 }
+
+--Google Maps API Key
+TheWorldTestkey:AIzaSyB0iUAtN8rmT6LVIEHrvs2ye0xh1de8vYg
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0iUAtN8rmT6LVIEHrvs2ye0xh1de8vYg&callback=initMap"
+  type="text/javascript"></script>
